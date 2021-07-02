@@ -1,0 +1,27 @@
+#!/bin/bash
+
+BINDIR=`dirname $0`
+cd $BINDIR
+
+. ../etc/config
+
+ADDR="../addr"
+USAGE="$0 - $ADDR must exist !" 
+
+if [ ! -e $ADDR ];then
+ echo $USAGE
+ exit 1
+fi
+
+cd $ADDR
+
+for i in * ;do
+ name=`$host $i|\
+ $awk -F"pointer " '{print $2}'|\
+ sed -e "s/\.$//g"`
+ if [[ "$name" != "" ]];then
+	echo mkdir ../names/$name
+	mkdir ../names/$name
+ fi	
+done
+

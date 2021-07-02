@@ -1,0 +1,29 @@
+#!/bin/bash
+
+BINDIR=`dirname $0`
+cd $BINDIR
+
+. ../etc/config
+
+PROG_LST="../etc/prog.lst"
+PROGRAMS="../lib/programs.lib"
+USAGE="$0 - $BINDIR/$PROG_LST must exist !" 
+
+if [ ! -e $PROG_LST ];then
+ echo $USAGE
+ exit 1
+fi
+
+rm $PROGRAMS
+for i in `cat $PROG_LST`; do
+  PATH_TO_PROG=`which $i`
+  echo $i|\
+  awk -v ptop=$PATH_TO_PROG '{ printf "%s=%s\n",$1,ptop}' \
+  >> $PROGRAMS
+done
+
+DELAY=5
+echo "Check $PROGRAMS  Continue after $DELAY seconds"
+sleep $DELAY
+
+$EDITOR $PROGRAMS

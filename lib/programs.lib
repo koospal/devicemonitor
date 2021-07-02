@@ -1,0 +1,16 @@
+ls=/usr/bin/ls
+cat=/usr/bin/cat
+tail=/usr/bin/tail
+head=/usr/bin/head
+sleep=/usr/bin/sleep
+date=/usr/bin/date
+awk=/usr/bin/awk
+sed=/usr/bin/sed
+grep=/usr/bin/grep
+diff=/usr/bin/diff
+sort=/usr/bin/sort
+ip=/usr/bin/ip
+host=/usr/bin/host
+ping=/usr/bin/ping
+arp=/sbin/arp
+telnet=/usr/bin/telnet

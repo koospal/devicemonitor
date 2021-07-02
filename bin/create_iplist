@@ -1,0 +1,31 @@
+#!/bin/bash
+
+BINDIR=`dirname $0`
+cd $BINDIR
+
+. ../etc/config
+
+
+NETWORK="../etc/network"
+USAGE="$0 - $NETWORK must exist, format ###.###.###.###/## !" 
+
+if [ ! -e $NETWORK ];then
+ echo $USAGE
+ exit 1
+fi
+
+$cat $NETWORK
+#ASSUME CLASS C
+NETPART=`$cat "$NETWORK"|$awk -F"/" '{print $1}'`
+NETMASK=`$cat "$NETWORK"|$awk -F"/" '{print 32-$2}'`
+NETADDR=`echo "$NETPART"|$awk -F"." '{print $1"."$2"."$3}'`
+#echo "$NETADDR"
+
+if [[ $NETMASK > 8 ]];then
+:	#here is something to do
+fi
+
+for ((i=1;i<255;i++)) do
+	mkdir ../addr/"$NETADDR".$i
+done
+

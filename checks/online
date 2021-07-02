@@ -1,0 +1,18 @@
+#!/bin/bash
+
+BINDIR=`dirname $0`
+cd $BINDIR
+
+. ../etc/config
+
+
+HOST=$1
+USAGE="$0 - $HOST must not be empty !" 
+
+if [[ "$HOST" == "" ]];then
+ echo $USAGE
+ exit 1
+fi
+$ping -c 1 $HOST	
+
+exit $?

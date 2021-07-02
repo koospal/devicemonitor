@@ -1,0 +1,21 @@
+#!/bin/bash
+
+BINDIR=`dirname $0`
+cd $BINDIR
+
+. ../etc/config
+
+
+HOST=$1
+USAGE="$0 - $HOST must not be empty !" 
+
+if [[ "$HOST" == "" ]];then
+ echo $USAGE
+ exit 1
+fi
+
+IPADDR=`$ping -c  1 $HOST|$head -1|$awk -F"(" '{print $2}'|$awk -F")" '{print $1}'`
+
+$arp -n|$grep -w $IPADDR|$awk '{print $3}'	
+
+exit $?

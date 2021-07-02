@@ -1,0 +1,29 @@
+#!/bin/bash
+
+BINDIR=`dirname $0`
+cd $BINDIR
+
+. ../etc/config
+
+
+DEV="../dev"
+USAGE="$0 - $DEV must exist !" 
+
+if [ ! -e $DEV ];then
+ echo $USAGE
+ exit 1
+fi
+cd $DEV
+
+while [[ TRUE ]]; do
+for i in *; do
+   ../checks/online $i	
+   if [[ $? == 0 ]]; then
+	   mv $i/off $i/on
+	   touch $i/on
+   else
+	   mv $i/on $i/off
+	   touch $i/off
+   fi
+done
+done

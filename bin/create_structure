@@ -1,0 +1,15 @@
+#!/bin/bash
+
+WORKDIR=/home/skoospa/devicemonitor
+
+cd $WORKDIR
+
+mkdir bin
+mkdir etc
+mkdir log
+mkdir lib
+mkdir addr
+mkdir names
+ln -s names dev
+mkdir doc
+mkdir checks

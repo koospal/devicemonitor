@@ -1,0 +1,12 @@
+#!/bin/bash
+
+WORKDIR=/home/skoospa/devicemonitor
+DEV_DIR=$WORKDIR/dev
+LOG_DIR=$WORKDIR/log
+BIN_DIR=$WORKDIR/bin
+ETC_DIR=$WORKDIR/etc
+
+EDITOR=vi
+
+#added after creating that list
+. ../lib/programs.lib
